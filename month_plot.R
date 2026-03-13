@@ -1,4 +1,3 @@
-library(gplots)
 source("config.R")
 
 contagem <- table(df$Mes_Num)
