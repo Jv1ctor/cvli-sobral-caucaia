@@ -16,5 +16,5 @@ df$Mes <- meses_pt[idx_mes]
 
 hora_formatada <- as.POSIXct(df$Hora, format="%H:%M")
 
-df$Hora = hora_formatada
+df$Hora <- hora_formatada
 
