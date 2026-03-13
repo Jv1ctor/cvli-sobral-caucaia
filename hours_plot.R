@@ -1,4 +1,3 @@
-library(gplots)
 library(lubridate)
 source("config.R")
 
