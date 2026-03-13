@@ -11,8 +11,8 @@ plot(mes_num, valores,
      lwd = 2,
      col= "blue",
      xaxt = "n",
-     xlab = "Mes",
+     xlab = "Mês",
      ylab = "Quantidade",
-     main = "Registros por Mes")
+     main = "Registros por Mês")
 
 axis(1, at = 1:12,labels = meses_pt, las = 2, cex.axis = 0.7)
