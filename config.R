@@ -1,4 +1,3 @@
-
 library(readxl)
 base <- read_excel("base.xlsx")
 View(base)
@@ -6,8 +5,6 @@ View(base)
 meses_pt <- c("Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", 
               "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro")
 df <- data.frame(base)
-
-# derive date/time fields (year, month, hour) for plotting
 
 df$Data <- as.Date(df$Data)
 df <- na.omit(df)
@@ -22,4 +19,3 @@ df$Mes <- meses_pt[idx_mes]
 hora_formatada <- as.POSIXct(df$Hora, format="%H:%M")
 
 df$Hora <- hora_formatada
-
