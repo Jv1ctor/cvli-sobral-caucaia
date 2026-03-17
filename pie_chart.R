@@ -6,7 +6,7 @@ pie(fat_genero,
     col = c("pink", "lightblue"),
     labels = paste0(names(fat_genero), " (", round(prop.table(fat_genero)*100, 1), "%)"))
 
-fat_meio <- table(df$Meio_Empregado)
+fat_meio <- table(df$Meio.Empregado)
 pie(fat_meio, 
     main = "Meio Empregado nas Ocorrências", 
     col = rainbow(length(fat_meio)),

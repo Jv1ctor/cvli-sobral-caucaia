@@ -1,7 +1,7 @@
 source("config.R")
 
 # Ajuste do nome da coluna conforme a base da SSPDS
-cont_dia <- table(df$Dia_da_Semana) 
+cont_dia <- table(df$Dia.da.Semana) 
 
 barplot(cont_dia,
         main = "Ocorrências por Dia da Semana",
@@ -10,7 +10,7 @@ barplot(cont_dia,
         cex.names = 0.8)
 
 # Ajuste da escolaridade (geralmente é Escolaridade_Vitima ou Escolaridade)
-cont_esc <- table(df$Escolaridade_Vitima)
+cont_esc <- table(df$Escolaridade.da.Vítima)
 
 barplot(cont_esc,
         main = "Escolaridade das Vítimas",
