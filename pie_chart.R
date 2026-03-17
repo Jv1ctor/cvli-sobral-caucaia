@@ -1,8 +1,8 @@
 source("config.R")
 
-fat_genero <- table(df$Genero_da_Vitima)
+fat_genero <- table(df$Gênero)
 pie(fat_genero, 
-    main = "Distribuição por Género", 
+    main = "Distribuição por Gênero", 
     col = c("pink", "lightblue"),
     labels = paste0(names(fat_genero), " (", round(prop.table(fat_genero)*100, 1), "%)"))
 
