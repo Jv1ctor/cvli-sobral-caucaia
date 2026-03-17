@@ -1,5 +1,4 @@
 library(dplyr)
-library(gmodels)
 source("config.R")
 
 #' Frequência Simples e Relativa
@@ -32,13 +31,5 @@ tabela_genero
 tabela_escolaridade
 tabela_raca
 tabela_dia_semana
-
-
-tabela_empregado
-tabela_genero
-CrossTable(tabela_empregado$freq_simples, tabela_genero$freq_simples,
-           prop.chisq = FALSE,
-           prop.t = FALSE,
-           format = "SPSS")
 
 
