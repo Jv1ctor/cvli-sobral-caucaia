@@ -7,7 +7,7 @@ barplot(cont_dia,
         las = 2, 
         cex.names = 0.8)
 
-cont_esc <- table(df$Escolaridade)
+cont_esc <- table(df$Escolaridade_da_Vitima)
 barplot(cont_esc, 
         main = "Escolaridade das Vítimas", 
         col = "darkgreen", 
