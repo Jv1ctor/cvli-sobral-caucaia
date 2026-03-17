@@ -45,13 +45,8 @@ make_academic_table <- function(data, col_name, titulo, arquivo_saida = NULL) {
     
     # Fonte
     tab_source_note(
-      source_note = "Fonte: Dados da pesquisa"
+      source_note = "Fonte: SSPDS-CE (2026)"
     )
-  
-  # Exportar se informado
-  if (!is.null(arquivo_saida)) {
-    gtsave(tabela, arquivo_saida)
-  }
   
   return(tabela)
 }
@@ -73,20 +68,31 @@ freq_simple_relative <- function(fdataframe, fcolumn){
   return (result)
 }
 
-tabela_natureza <- df %>% freq_simple_relative(fcolumn = Natureza)
-tabela_empregado <- df %>% freq_simple_relative(fcolumn = Meio.Empregado)
-tabela_genero <- df %>% freq_simple_relative(fcolumn = Gênero)
-tabela_escolaridade <- df %>% freq_simple_relative(fcolumn = Escolaridade.da.Vítima)
-tabela_raca <- df %>% freq_simple_relative(fcolumn = Raça.da.Vítima)
-tabela_dia_semana <- df %>% freq_simple_relative(fcolumn = Dia.da.Semana)
+tabela_natureza <- df %>% 
+  freq_simple_relative(fcolumn = Natureza) %>% 
+  make_academic_table(col_name = "Natureza", titulo = "Tabela 1. Natureza dos casos")
+
+tabela_empregado <- df %>% 
+  freq_simple_relative(fcolumn = Meio.Empregado) %>% 
+  make_academic_table(col_name = "Meio.Empregado", titulo = "Tabela 2. Meio empregado nos casos")
+
+tabela_genero <- df %>% 
+  freq_simple_relative(fcolumn = Gênero) %>% 
+  make_academic_table(col_name = "Gênero", titulo = "Tabela 3. Gênero da vítima nos casos")
+
+tabela_escolaridade <- df %>% 
+  freq_simple_relative(fcolumn = Escolaridade.da.Vítima) %>% 
+  make_academic_table(col_name = "Escolaridade.da.Vítima", titulo = "Tabela 4. Escolaridade da vítima nos casos")
+
+tabela_raca <- df %>% 
+  freq_simple_relative(fcolumn = Raça.da.Vítima) %>% 
+  make_academic_table(col_name = "Raça.da.Vítima", titulo = "Tabela 5. Raça da vítima nos casos")
+
+tabela_dia_semana <- df %>% 
+  freq_simple_relative(fcolumn = Dia.da.Semana) %>% 
+  make_academic_table(col_name = "Dia.da.Semana", titulo = "Tabela 6. Dia da semana dos casos")
 
 
-
-make_academic_table(
-  tabela_natureza,
-  "Natureza",   
-  "Tabela 1. Natureza dos casos",
-  "tabela_natureza.html")
 
 tabela_natureza
 tabela_empregado

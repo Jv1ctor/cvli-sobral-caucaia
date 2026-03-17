@@ -2,19 +2,14 @@ library(gmodels)
 library(gt)
 library(gtsummary)
 library(dplyr)
+library(tidyr)
 source("config.R")
 
 make_crosstable_n_percent <- function(data, var1, var2, titulo,
-                                      tipo = "row", # "row", "col", "total"
-                                      arquivo_saida = NULL) {
-  
-  library(dplyr)
-  library(gt)
-  library(tidyr)
-  
+  tipo = "row", # "row", "col", "total"
+  arquivo_saida = NULL) {
   # Tabela de frequência
   tab <- table(data[[var1]], data[[var2]])
-  
   # Percentual
   prop <- switch(tipo,
                  "row" = prop.table(tab, 1),
@@ -38,29 +33,26 @@ make_crosstable_n_percent <- function(data, var1, var2, titulo,
   # Criar tabela acadêmica
   tabela <- df_final %>%
     gt() %>%
-    
     tab_header(
       title = titulo,
-      subtitle = paste("Valores apresentados como n (%) por", tipo)
-    ) %>%
-    
+      subtitle = paste(
+        "Valores apresentados como n (%) por", 
+        switch(
+          tipo, 
+          "row" = "linha", 
+          "col" = "coluna", 
+          "total" = "total"
+        )
+    )) %>%
     cols_align(align = "center", -Var1) %>%
     cols_align(align = "left", Var1) %>%
-    
-    cols_label(Var1 = var1) %>%
-    
+    cols_label(Var1 = "") %>%
     tab_source_note(
-      source_note = "Fonte: Dados da pesquisa"
+      source_note = "Fonte: SSPDS-CE (2026)"
     ) %>%
-    
     tab_options(
       table.font.size = "small"
     )
-  
-  # Exportar
-  if (!is.null(arquivo_saida)) {
-    gtsave(tabela, arquivo_saida)
-  }
   
   return(tabela)
 }
@@ -69,18 +61,27 @@ make_crosstable_n_percent(
   df,
   "Meio.Empregado",
   "Gênero",
-  "Tabela X. Meio empregado por gênero",
+  "Tabela 1. Meio empregado por gênero",
   tipo = "row",
-  "tabela_meio_genero.html"
 )
 
-CrossTable(df$Meio.Empregado, df$Gênero,
-           prop.chisq = FALSE,
-           prop.t = FALSE,
-           format = "SPSS")
+make_crosstable_n_percent(
+  df,
+  "Escolaridade.da.Vítima",
+  "Raça.da.Vítima",
+  "Tabela 2. Escolaridade por Raça",
+  tipo = "row",
+)
 
 
-CrossTable(df$Escolaridade.da.Vítima, df$Raça.da.Vítima,
-           prop.chisq = FALSE,
-           prop.t = FALSE,
-           format = "SPSS")
+
+# CrossTable(df$Meio.Empregado, df$Gênero,
+#           prop.chisq = FALSE,
+#           prop.t = FALSE,
+#           format = "SPSS")
+
+
+# CrossTable(df$Escolaridade.da.Vítima, df$Raça.da.Vítima,
+#           prop.chisq = FALSE,
+#           prop.t = FALSE,
+#           format = "SPSS")
